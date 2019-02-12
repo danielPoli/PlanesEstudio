@@ -1,5 +1,7 @@
 package co.com.planesestudio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -13,14 +15,22 @@ public class Docentes implements Serializable {
     @Column(name = "ID_DOCENTE")
     private Long id;
 
-    @Column(name = "TIPO_DOCUMENTO")
-    private Long tipoDocumento;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_TIPO_DOCUMENTO")
+    @JsonIgnore
+    private TipoDocumento tipoDocumento;
 
     @Column(name = "NUMERO_DOCUMENTO")
     private Long numeroDocumento;
 
     @Column(name = "NOMBRE_DOCENTE")
     private String nombreDocente;
+
+    @Column(name = "PRIMER_APELLIDO")
+    private String primerApellido;
+
+    @Column(name = "SEGUNDO_APELLIDO")
+    private String segundoApellido;
 
     @Column(name = "FECHA_VINCULACION")
     private Date fecha_vinculacion;
@@ -37,11 +47,12 @@ public class Docentes implements Serializable {
     public Docentes() {
     }
 
-    public Docentes(Long id, Long tipoDocumento, Long numeroDocumento, String nombreDocente, Date fecha_vinculacion, String correo, Long telefono_fijo, Long telefono_movil) {
-        this.id = id;
+    public Docentes(TipoDocumento tipoDocumento, Long numeroDocumento, String nombreDocente, String primerApellido, String segundoApellido, Date fecha_vinculacion, String correo, Long telefono_fijo, Long telefono_movil) {
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
         this.nombreDocente = nombreDocente;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
         this.fecha_vinculacion = fecha_vinculacion;
         this.correo = correo;
         this.telefono_fijo = telefono_fijo;
@@ -56,11 +67,11 @@ public class Docentes implements Serializable {
         this.id = id;
     }
 
-    public Long getTipoDocumento() {
+    public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(Long tipoDocumento) {
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 
@@ -74,6 +85,22 @@ public class Docentes implements Serializable {
 
     public String getNombreDocente() {
         return nombreDocente;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
 
     public void setNombreDocente(String nombreDocente) {

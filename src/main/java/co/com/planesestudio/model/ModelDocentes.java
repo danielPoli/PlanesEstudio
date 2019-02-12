@@ -1,14 +1,17 @@
 package co.com.planesestudio.model;
 
 import co.com.planesestudio.entity.Docentes;
+import co.com.planesestudio.entity.TipoDocumento;
 
 import java.util.Date;
 
 public class ModelDocentes {
     private Long id;
-    private Long tipoDocumento;
+    private TipoDocumento tipoDocumento;
     private Long numeroDocumento;
     private String nombreDocente;
+    private String primerApellido;
+    private String segundoApellido;
     private Date fecha_vinculacion;
     private String correo;
     private Long telefono_fijo;
@@ -23,17 +26,21 @@ public class ModelDocentes {
         this.tipoDocumento = docentes.getTipoDocumento();
         this.numeroDocumento = docentes.getNumeroDocumento();
         this.nombreDocente = docentes.getNombreDocente();
+        this.primerApellido = docentes.getPrimerApellido();
+        this.segundoApellido = docentes.getSegundoApellido();
         this.fecha_vinculacion = docentes.getFecha_vinculacion();
         this.correo = docentes.getCorreo();
         this.telefono_fijo = docentes.getTelefono_fijo();
         this.telefono_movil = docentes.getTelefono_movil();
     }
 
-    public ModelDocentes(Long id, Long tipoDocumento, Long numeroDocumento, String nombreDocente, Date fecha_vinculacion, String correo, Long telefono_fijo, Long telefono_movil) {
+    public ModelDocentes(Long id, TipoDocumento tipoDocumento, Long numeroDocumento, String nombreDocente, String primerApellido, String segundoApellido, Date fecha_vinculacion, String correo, Long telefono_fijo, Long telefono_movil) {
         this.id = id;
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
         this.nombreDocente = nombreDocente;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
         this.fecha_vinculacion = fecha_vinculacion;
         this.correo = correo;
         this.telefono_fijo = telefono_fijo;
@@ -48,11 +55,11 @@ public class ModelDocentes {
         this.id = id;
     }
 
-    public Long getTipoDocumento() {
+    public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(Long tipoDocumento) {
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 
@@ -102,5 +109,21 @@ public class ModelDocentes {
 
     public void setTelefono_movil(Long telefono_movil) {
         this.telefono_movil = telefono_movil;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
 }
