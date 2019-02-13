@@ -2,6 +2,8 @@ package co.com.planesestudio.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "CONTENIDO")
 @Entity
@@ -17,6 +19,9 @@ public class Contenido implements Serializable {
 
     @Column(name = "LINK_CONTENIDO")
     private String linkContenido;
+
+    @OneToMany(mappedBy = "DOCENTES_PERIODO_ACADEMICO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Contenido> contenidoList = new ArrayList<>();
 
     public Contenido() {
     }
@@ -49,5 +54,13 @@ public class Contenido implements Serializable {
 
     public void setLinkContenido(String linkContenido) {
         this.linkContenido = linkContenido;
+    }
+
+    public List<Contenido> getContenidoList() {
+        return contenidoList;
+    }
+
+    public void setContenidoList(List<Contenido> contenidoList) {
+        this.contenidoList = contenidoList;
     }
 }

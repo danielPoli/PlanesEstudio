@@ -1,5 +1,7 @@
 package co.com.planesestudio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,28 +14,32 @@ public class DocentesPeriodoAcademico implements Serializable {
     @Column(name = "ID_DOCENTES_PERIODO_ACADEMICO")
     private Long id;
 
-    @Column(name = "ID_DOCENTE")
-    private Long idDocente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_DOCENTES")
+    private Docentes docentes;
 
     @Column(name = "ID_PERIODO_ACADEMICO")
     private Long idPeriodoAcademico;
 
-    @Column(name = "ID_CONTENIDO")
-    private Long idContenido;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CONTENIDO")
+    @JsonIgnore
+    private Contenido contenido;
 
     @Column(name = "ID_MODULO")
     private Long idModulo;
 
     @Column(name = "ID_EVALUCION_DOCENTE")
-    private Long idEvaluacioinDocente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private EvaluacionDocente evaluacioinDocente;
 
     public DocentesPeriodoAcademico() {
     }
 
-    public DocentesPeriodoAcademico(Long idDocente, Long idPeriodoAcademico, Long idContenido, Long idModulo, Long idEvaluacioinDocente) {
-        this.idDocente = idDocente;
+    public DocentesPeriodoAcademico(Docentes docentes, Long idPeriodoAcademico, Contenido contenido, Long idModulo, Long idEvaluacioinDocente) {
+        this.docentes = docentes;
         this.idPeriodoAcademico = idPeriodoAcademico;
-        this.idContenido = idContenido;
+        this.contenido = contenido;
         this.idModulo = idModulo;
         this.idEvaluacioinDocente = idEvaluacioinDocente;
     }
@@ -46,12 +52,12 @@ public class DocentesPeriodoAcademico implements Serializable {
         this.id = id;
     }
 
-    public Long getIdDocente() {
-        return idDocente;
+    public Docentes getDocentes() {
+        return docentes;
     }
 
-    public void setIdDocente(Long idDocente) {
-        this.idDocente = idDocente;
+    public void setDocentes(Docentes docentes) {
+        this.docentes = docentes;
     }
 
     public Long getIdPeriodoAcademico() {
@@ -62,12 +68,12 @@ public class DocentesPeriodoAcademico implements Serializable {
         this.idPeriodoAcademico = idPeriodoAcademico;
     }
 
-    public Long getIdContenido() {
-        return idContenido;
+    public Contenido getContenido() {
+        return contenido;
     }
 
-    public void setIdContenido(Long idContenido) {
-        this.idContenido = idContenido;
+    public void setContenido(Contenido contenido) {
+        this.contenido = contenido;
     }
 
     public Long getIdModulo() {

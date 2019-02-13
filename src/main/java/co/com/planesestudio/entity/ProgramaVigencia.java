@@ -9,12 +9,16 @@ import java.util.Date;
 public class ProgramaVigencia implements Serializable {
 
 
+
     private Long idPrograma;
 
+    @Column(name = "FECHA_INICIO")
     private Date fechaInicio;
 
+    @Column(name = "FECHA_FIN")
     private Date fechaFin;
 
+    @Column(name = "PUBLICADA")
     private Boolean publicada;
 
     public ProgramaVigencia() {
