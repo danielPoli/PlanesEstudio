@@ -1,5 +1,7 @@
 package co.com.planesestudio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -31,8 +33,10 @@ public class Modulo implements Serializable {
     @Column(name = "CREDITOS")
     private Long creditos;
 
-    @Column(name = "SEMESTRE")
-    private Long semestre;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SEMESTRE")
+    @JsonIgnore
+    private Nivel semestre;
 
     @Column(name = "PRERREQUISITO")
     private Long prerrequisito;
@@ -49,13 +53,15 @@ public class Modulo implements Serializable {
     @Column(name = "VIGENCIA_HASTA")
     private Date vigenciaHasta;
 
-    @Column(name = "PROGRAMA_VIGENCIA")
-    private Long programaVigencia;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PROGRAMA_VIGENCIA")
+    @JsonIgnore
+    private ProgramaVigencia programaVigencia;
 
     public Modulo() {
     }
 
-    public Modulo(Long idModulo, String nombreModulo, Long modalidad, Long horasTrabajoPresencial, Long horasTrabajoAsesoria, Long horasTrabajoIndependiente, Long creditos, Long semestre, Long prerrequisito, Long correquisito, String actoAdministrativo, Date vigenciaDesde, Date vigenciaHasta, Long programaVigencia) {
+    public Modulo(Long idModulo, String nombreModulo, Long modalidad, Long horasTrabajoPresencial, Long horasTrabajoAsesoria, Long horasTrabajoIndependiente, Long creditos, Nivel semestre, Long prerrequisito, Long correquisito, String actoAdministrativo, Date vigenciaDesde, Date vigenciaHasta, ProgramaVigencia programaVigencia) {
         this.idModulo = idModulo;
         this.nombreModulo = nombreModulo;
         this.modalidad = modalidad;
@@ -128,11 +134,11 @@ public class Modulo implements Serializable {
         this.creditos = creditos;
     }
 
-    public Long getSemestre() {
+    public Nivel getSemestre() {
         return semestre;
     }
 
-    public void setSemestre(Long semestre) {
+    public void setSemestre(Nivel semestre) {
         this.semestre = semestre;
     }
 
@@ -176,11 +182,11 @@ public class Modulo implements Serializable {
         this.vigenciaHasta = vigenciaHasta;
     }
 
-    public Long getProgramaVigencia() {
+    public ProgramaVigencia getProgramaVigencia() {
         return programaVigencia;
     }
 
-    public void setProgramaVigencia(Long programaVigencia) {
+    public void setProgramaVigencia(ProgramaVigencia programaVigencia) {
         this.programaVigencia = programaVigencia;
     }
 }

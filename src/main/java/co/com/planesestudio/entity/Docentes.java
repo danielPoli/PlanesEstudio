@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "DOCENTES")
 @Entity
@@ -43,6 +45,9 @@ public class Docentes implements Serializable {
 
     @Column(name = "TELEFONO_MOVIL")
     private Long telefono_movil;
+
+    @OneToMany(mappedBy = "DOCENTES_PERIODO_ACADEMICO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList = new ArrayList<>();
 
     public Docentes() {
     }
@@ -137,5 +142,13 @@ public class Docentes implements Serializable {
 
     public void setTelefono_movil(Long telefono_movil) {
         this.telefono_movil = telefono_movil;
+    }
+
+    public List<DocentesPeriodoAcademico> getDocentesPeriodoAcademicoList() {
+        return docentesPeriodoAcademicoList;
+    }
+
+    public void setDocentesPeriodoAcademicoList(List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList) {
+        this.docentesPeriodoAcademicoList = docentesPeriodoAcademicoList;
     }
 }

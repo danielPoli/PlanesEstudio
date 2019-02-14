@@ -1,5 +1,7 @@
 package co.com.planesestudio.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -21,18 +23,19 @@ public class Programa implements Serializable {
     @Column(name = "ACTO_ADMINISTRATIVO")
     private String actoAdministrativo;
 
-    @Column(name = "ID_FACULTAD")
-    private Long idFacultad;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_FACULTAD")
+    private Facultad facultad;
 
     public Programa() {
     }
 
-    public Programa(Long idPrograma, String nombrePrograma, String codigoPrograma, String actoAdministrativo, Long idFacultad) {
+    public Programa(Long idPrograma, String nombrePrograma, String codigoPrograma, String actoAdministrativo, Facultad fFacultad) {
         this.idPrograma = idPrograma;
         this.nombrePrograma = nombrePrograma;
         this.codigoPrograma = codigoPrograma;
         this.actoAdministrativo = actoAdministrativo;
-        this.idFacultad = idFacultad;
+        this.facultad = facultad;
     }
 
     public Long getIdPrograma() {
@@ -67,11 +70,11 @@ public class Programa implements Serializable {
         this.actoAdministrativo = actoAdministrativo;
     }
 
-    public Long getIdFacultad() {
-        return idFacultad;
+    public Facultad getFacultad() {
+        return facultad;
     }
 
-    public void setIdFacultad(Long idFacultad) {
-        this.idFacultad = idFacultad;
+    public void setFacultad(Facultad facultad) {
+        this.facultad = facultad;
     }
 }

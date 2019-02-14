@@ -16,32 +16,38 @@ public class DocentesPeriodoAcademico implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_DOCENTES")
+    @JsonIgnore
     private Docentes docentes;
 
-    @Column(name = "ID_PERIODO_ACADEMICO")
-    private Long idPeriodoAcademico;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PERIODO_ACADEMICO")
+    @JsonIgnore
+    private PeriodoAcademico periodoAcademico;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CONTENIDO")
     @JsonIgnore
     private Contenido contenido;
 
-    @Column(name = "ID_MODULO")
-    private Long idModulo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_MODULO")
+    @JsonIgnore
+    private Modulo modulo;
 
     @Column(name = "ID_EVALUCION_DOCENTE")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private EvaluacionDocente evaluacioinDocente;
 
     public DocentesPeriodoAcademico() {
     }
 
-    public DocentesPeriodoAcademico(Docentes docentes, Long idPeriodoAcademico, Contenido contenido, Long idModulo, Long idEvaluacioinDocente) {
+    public DocentesPeriodoAcademico(Docentes docentes, PeriodoAcademico periodoAcademico, Contenido contenido, Modulo modulo, EvaluacionDocente evaluacioinDocente) {
         this.docentes = docentes;
-        this.idPeriodoAcademico = idPeriodoAcademico;
+        this.periodoAcademico = periodoAcademico;
         this.contenido = contenido;
-        this.idModulo = idModulo;
-        this.idEvaluacioinDocente = idEvaluacioinDocente;
+        this.modulo = modulo;
+        this.evaluacioinDocente = evaluacioinDocente;
     }
 
     public Long getId() {
@@ -60,12 +66,12 @@ public class DocentesPeriodoAcademico implements Serializable {
         this.docentes = docentes;
     }
 
-    public Long getIdPeriodoAcademico() {
-        return idPeriodoAcademico;
+    public PeriodoAcademico getPeriodoAcademico() {
+        return periodoAcademico;
     }
 
-    public void setIdPeriodoAcademico(Long idPeriodoAcademico) {
-        this.idPeriodoAcademico = idPeriodoAcademico;
+    public void setPeriodoAcademico(PeriodoAcademico periodoAcademico) {
+        this.periodoAcademico = periodoAcademico;
     }
 
     public Contenido getContenido() {
@@ -76,19 +82,19 @@ public class DocentesPeriodoAcademico implements Serializable {
         this.contenido = contenido;
     }
 
-    public Long getIdModulo() {
-        return idModulo;
+    public Modulo getModulo() {
+        return modulo;
     }
 
-    public void setIdModulo(Long idModulo) {
-        this.idModulo = idModulo;
+    public void setModulo(Modulo modulo) {
+        this.modulo = modulo;
     }
 
-    public Long getIdEvaluacioinDocente() {
-        return idEvaluacioinDocente;
+    public EvaluacionDocente getEvaluacioinDocente() {
+        return evaluacioinDocente;
     }
 
-    public void setIdEvaluacioinDocente(Long idEvaluacioinDocente) {
-        this.idEvaluacioinDocente = idEvaluacioinDocente;
+    public void setEvaluacioinDocente(EvaluacionDocente evaluacioinDocente) {
+        this.evaluacioinDocente = evaluacioinDocente;
     }
 }

@@ -21,7 +21,7 @@ public class Contenido implements Serializable {
     private String linkContenido;
 
     @OneToMany(mappedBy = "DOCENTES_PERIODO_ACADEMICO", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Contenido> contenidoList = new ArrayList<>();
+    private List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList = new ArrayList<>();
 
     public Contenido() {
     }
@@ -56,11 +56,11 @@ public class Contenido implements Serializable {
         this.linkContenido = linkContenido;
     }
 
-    public List<Contenido> getContenidoList() {
-        return contenidoList;
+    public List<DocentesPeriodoAcademico> getDocentesPeriodoAcademicoList() {
+        return docentesPeriodoAcademicoList;
     }
 
-    public void setContenidoList(List<Contenido> contenidoList) {
-        this.contenidoList = contenidoList;
+    public void setDocentesPeriodoAcademicoList(List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList) {
+        this.docentesPeriodoAcademicoList = docentesPeriodoAcademicoList;
     }
 }
