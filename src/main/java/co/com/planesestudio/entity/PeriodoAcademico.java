@@ -2,6 +2,8 @@ package co.com.planesestudio.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "PERIODO_ACADEMICO")
 @Entity
@@ -18,17 +20,16 @@ public class PeriodoAcademico implements Serializable {
     @Column(name = "PERIODO")
     private Long periodo;
 
-
-    private Long idModulo;
+    @OneToMany(mappedBy = "DOCENTES_PERIODO_ACADEMICO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList = new ArrayList<>();
 
     public PeriodoAcademico() {
     }
 
-    public PeriodoAcademico(Long idPeriodoAcademico, Long año, Long periodo, Long idModulo) {
+    public PeriodoAcademico(Long idPeriodoAcademico, Long año, Long periodo) {
         this.idPeriodoAcademico = idPeriodoAcademico;
         this.año = año;
         this.periodo = periodo;
-        this.idModulo = idModulo;
     }
 
     public Long getIdPeriodoAcademico() {
@@ -55,11 +56,11 @@ public class PeriodoAcademico implements Serializable {
         this.periodo = periodo;
     }
 
-    public Long getIdModulo() {
-        return idModulo;
+    public List<DocentesPeriodoAcademico> getDocentesPeriodoAcademicoList() {
+        return docentesPeriodoAcademicoList;
     }
 
-    public void setIdModulo(Long idModulo) {
-        this.idModulo = idModulo;
+    public void setDocentesPeriodoAcademicoList(List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList) {
+        this.docentesPeriodoAcademicoList = docentesPeriodoAcademicoList;
     }
 }

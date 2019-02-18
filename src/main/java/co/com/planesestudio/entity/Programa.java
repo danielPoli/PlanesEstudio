@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "PROGRAMA")
 @Entity
@@ -26,6 +28,9 @@ public class Programa implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_FACULTAD")
     private Facultad facultad;
+
+    @OneToMany(mappedBy = "PROGRAMA_VIGENCIA", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProgramaVigencia> programaVigenciaList = new ArrayList<>();
 
     public Programa() {
     }
@@ -76,5 +81,13 @@ public class Programa implements Serializable {
 
     public void setFacultad(Facultad facultad) {
         this.facultad = facultad;
+    }
+
+    public List<ProgramaVigencia> getProgramaVigenciaList() {
+        return programaVigenciaList;
+    }
+
+    public void setProgramaVigenciaList(List<ProgramaVigencia> programaVigenciaList) {
+        this.programaVigenciaList = programaVigenciaList;
     }
 }

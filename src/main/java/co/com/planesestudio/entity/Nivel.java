@@ -2,6 +2,8 @@ package co.com.planesestudio.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "NIVEL")
 @Entity
@@ -14,6 +16,9 @@ public class Nivel implements Serializable {
 
     @Column(name = "NOMBRE_NIVEL")
     private String nombreNivel;
+
+    @OneToMany(mappedBy = "MODULO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Modulo> moduloList = new ArrayList<>();
 
     public Nivel() {
     }
@@ -37,5 +42,13 @@ public class Nivel implements Serializable {
 
     public void setNombreNivel(String nombreNivel) {
         this.nombreNivel = nombreNivel;
+    }
+
+    public List<Modulo> getModuloList() {
+        return moduloList;
+    }
+
+    public void setModuloList(List<Modulo> moduloList) {
+        this.moduloList = moduloList;
     }
 }

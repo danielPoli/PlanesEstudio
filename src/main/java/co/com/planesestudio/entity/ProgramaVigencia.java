@@ -2,7 +2,9 @@ package co.com.planesestudio.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "PROGRAMA_VIGENCIA")
 @Entity
@@ -20,6 +22,9 @@ public class ProgramaVigencia implements Serializable {
 
     @Column(name = "PUBLICADA")
     private Boolean publicada;
+
+    @OneToMany(mappedBy = "MODULO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Modulo> moduloList = new ArrayList<>();
 
     public ProgramaVigencia() {
     }
@@ -61,5 +66,13 @@ public class ProgramaVigencia implements Serializable {
 
     public void setPublicada(Boolean publicada) {
         this.publicada = publicada;
+    }
+
+    public List<Modulo> getModuloList() {
+        return moduloList;
+    }
+
+    public void setModuloList(List<Modulo> moduloList) {
+        this.moduloList = moduloList;
     }
 }

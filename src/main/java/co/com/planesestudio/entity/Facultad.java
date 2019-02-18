@@ -2,6 +2,8 @@ package co.com.planesestudio.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "FACULTAD")
 @Entity
@@ -14,6 +16,9 @@ public class Facultad implements Serializable {
 
     @Column(name = "NOMBRE_FACULTAD")
     private String nombreFacultad;
+
+    @OneToMany(mappedBy = "PROGRAMA")
+    private List<Programa> programaList = new ArrayList<>();
 
     public Facultad() {
     }
@@ -37,5 +42,13 @@ public class Facultad implements Serializable {
 
     public void setNombreFacultad(String nombreFacultad) {
         this.nombreFacultad = nombreFacultad;
+    }
+
+    public List<Programa> getProgramaList() {
+        return programaList;
+    }
+
+    public void setProgramaList(List<Programa> programaList) {
+        this.programaList = programaList;
     }
 }
