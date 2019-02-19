@@ -17,7 +17,7 @@ public class Facultad implements Serializable {
     @Column(name = "NOMBRE_FACULTAD")
     private String nombreFacultad;
 
-    @OneToMany(mappedBy = "PROGRAMA")
+    @OneToMany(mappedBy = "PROGRAMA", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Programa> programaList = new ArrayList<>();
 
     public Facultad() {

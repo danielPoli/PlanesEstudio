@@ -34,8 +34,8 @@ public class DocentesPeriodoAcademico implements Serializable {
     @JsonIgnore
     private Modulo modulo;
 
-    @Column(name = "ID_EVALUCION_DOCENTE")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_EVALUCION_DOCENTE")
     @JsonIgnore
     private EvaluacionDocente evaluacioinDocente;
 

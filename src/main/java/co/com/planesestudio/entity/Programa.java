@@ -1,11 +1,10 @@
 package co.com.planesestudio.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Table(name = "PROGRAMA")
 @Entity
@@ -27,15 +26,13 @@ public class Programa implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_FACULTAD")
+    @JsonIgnore
     private Facultad facultad;
-
-    @OneToMany(mappedBy = "PROGRAMA_VIGENCIA", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProgramaVigencia> programaVigenciaList = new ArrayList<>();
 
     public Programa() {
     }
 
-    public Programa(Long idPrograma, String nombrePrograma, String codigoPrograma, String actoAdministrativo, Facultad fFacultad) {
+    public Programa(Long idPrograma, String nombrePrograma, String codigoPrograma, String actoAdministrativo, Facultad facultad) {
         this.idPrograma = idPrograma;
         this.nombrePrograma = nombrePrograma;
         this.codigoPrograma = codigoPrograma;
@@ -83,11 +80,4 @@ public class Programa implements Serializable {
         this.facultad = facultad;
     }
 
-    public List<ProgramaVigencia> getProgramaVigenciaList() {
-        return programaVigenciaList;
-    }
-
-    public void setProgramaVigenciaList(List<ProgramaVigencia> programaVigenciaList) {
-        this.programaVigenciaList = programaVigenciaList;
-    }
 }

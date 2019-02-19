@@ -38,11 +38,13 @@ public class Modulo implements Serializable {
     @JsonIgnore
     private Nivel semestre;
 
-    @Column(name = "PRERREQUISITO")
-    private Long prerrequisito;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MODULO")
+    private Modulo prerrequisito;
 
-    @Column(name = "CORREQUISITO")
-    private Long correquisito;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MODULO")
+    private Modulo correquisito;
 
     @Column(name = "ACTO_ADMINISTRATIVO")
     private String actoAdministrativo;
@@ -61,7 +63,7 @@ public class Modulo implements Serializable {
     public Modulo() {
     }
 
-    public Modulo(Long idModulo, String nombreModulo, Long modalidad, Long horasTrabajoPresencial, Long horasTrabajoAsesoria, Long horasTrabajoIndependiente, Long creditos, Nivel semestre, Long prerrequisito, Long correquisito, String actoAdministrativo, Date vigenciaDesde, Date vigenciaHasta, ProgramaVigencia programaVigencia) {
+    public Modulo(Long idModulo, String nombreModulo, Long modalidad, Long horasTrabajoPresencial, Long horasTrabajoAsesoria, Long horasTrabajoIndependiente, Long creditos, Nivel semestre, Modulo prerrequisito, Modulo correquisito, String actoAdministrativo, Date vigenciaDesde, Date vigenciaHasta, ProgramaVigencia programaVigencia) {
         this.idModulo = idModulo;
         this.nombreModulo = nombreModulo;
         this.modalidad = modalidad;
@@ -142,19 +144,19 @@ public class Modulo implements Serializable {
         this.semestre = semestre;
     }
 
-    public Long getPrerrequisito() {
+    public Modulo getPrerrequisito() {
         return prerrequisito;
     }
 
-    public void setPrerrequisito(Long prerrequisito) {
+    public void setPrerrequisito(Modulo prerrequisito) {
         this.prerrequisito = prerrequisito;
     }
 
-    public Long getCorrequisito() {
+    public Modulo getCorrequisito() {
         return correquisito;
     }
 
-    public void setCorrequisito(Long correquisito) {
+    public void setCorrequisito(Modulo correquisito) {
         this.correquisito = correquisito;
     }
 

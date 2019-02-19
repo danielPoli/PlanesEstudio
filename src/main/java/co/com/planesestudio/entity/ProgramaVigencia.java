@@ -11,8 +11,14 @@ import java.util.List;
 public class ProgramaVigencia implements Serializable {
 
 
+    @GeneratedValue
+    @Id
+    @Column(name = "ID_PROGRAMA_VIGENCIA")
+    private Long idProgramaVigencia;
 
-    private Long idPrograma;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PROGRAMA")
+    private Programa idPrograma;
 
     @Column(name = "FECHA_INICIO")
     private Date fechaInicio;
@@ -29,18 +35,18 @@ public class ProgramaVigencia implements Serializable {
     public ProgramaVigencia() {
     }
 
-    public ProgramaVigencia(Long idPrograma, Date fechaInicio, Date fechaFin, Boolean publicada) {
+    public ProgramaVigencia(Programa idPrograma, Date fechaInicio, Date fechaFin, Boolean publicada) {
         this.idPrograma = idPrograma;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.publicada = publicada;
     }
 
-    public Long getIdPrograma() {
+    public Programa getIdPrograma() {
         return idPrograma;
     }
 
-    public void setIdPrograma(Long idPrograma) {
+    public void setIdPrograma(Programa idPrograma) {
         this.idPrograma = idPrograma;
     }
 
