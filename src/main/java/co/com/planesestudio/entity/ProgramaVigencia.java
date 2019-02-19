@@ -29,7 +29,7 @@ public class ProgramaVigencia implements Serializable {
     @Column(name = "PUBLICADA")
     private Boolean publicada;
 
-    @OneToMany(mappedBy = "MODULO", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "programaVigencia", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Modulo> moduloList = new ArrayList<>();
 
     public ProgramaVigencia() {

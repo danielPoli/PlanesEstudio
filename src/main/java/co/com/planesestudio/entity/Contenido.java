@@ -20,7 +20,7 @@ public class Contenido implements Serializable {
     @Column(name = "LINK_CONTENIDO")
     private String linkContenido;
 
-    @OneToMany(mappedBy = "DOCENTES_PERIODO_ACADEMICO", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "contenido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList = new ArrayList<>();
 
     public Contenido() {

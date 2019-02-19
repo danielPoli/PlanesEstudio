@@ -46,7 +46,7 @@ public class Docentes implements Serializable {
     @Column(name = "TELEFONO_MOVIL")
     private Long telefono_movil;
 
-    @OneToMany(mappedBy = "DOCENTES_PERIODO_ACADEMICO", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "docentes", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList = new ArrayList<>();
 
     public Docentes() {

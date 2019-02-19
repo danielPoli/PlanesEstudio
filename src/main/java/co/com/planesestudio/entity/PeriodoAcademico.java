@@ -20,7 +20,7 @@ public class PeriodoAcademico implements Serializable {
     @Column(name = "PERIODO")
     private Long periodo;
 
-    @OneToMany(mappedBy = "DOCENTES_PERIODO_ACADEMICO", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "periodoAcademico", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList = new ArrayList<>();
 
     public PeriodoAcademico() {

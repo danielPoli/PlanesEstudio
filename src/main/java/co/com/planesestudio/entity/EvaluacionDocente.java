@@ -17,7 +17,7 @@ public class EvaluacionDocente implements Serializable {
     @Column(name = "EVALUACION_DOCENTE")
     private Long evaluacionDocente;
 
-    @OneToMany(mappedBy = "DOCENTES_PERIODO_ACADEMICO", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "evaluacioinDocente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocentesPeriodoAcademico> docentesPeriodoAcademicoList = new ArrayList<>();
 
     public EvaluacionDocente() {

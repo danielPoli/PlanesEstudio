@@ -39,11 +39,11 @@ public class Modulo implements Serializable {
     private Nivel semestre;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MODULO")
+    @JoinColumn(name = "PRERREQUISITO")
     private Modulo prerrequisito;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MODULO")
+    @JoinColumn(name = "CORREQUISITO")
     private Modulo correquisito;
 
     @Column(name = "ACTO_ADMINISTRATIVO")

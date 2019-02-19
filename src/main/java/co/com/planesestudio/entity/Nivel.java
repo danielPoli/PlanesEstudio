@@ -17,7 +17,7 @@ public class Nivel implements Serializable {
     @Column(name = "NOMBRE_NIVEL")
     private String nombreNivel;
 
-    @OneToMany(mappedBy = "MODULO", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "semestre", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Modulo> moduloList = new ArrayList<>();
 
     public Nivel() {
